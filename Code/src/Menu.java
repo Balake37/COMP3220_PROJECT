@@ -12,7 +12,7 @@ public class Menu extends JPanel {
     public Menu(Main main) {
         //load the background image
         try {
-            backgroundImage = ImageIO.read(new File("src/images/menu.png"));
+            backgroundImage = ImageIO.read(new File("Code/src/images/menu.png"));
         } catch (IOException e) {
             System.err.println("Error loading background image: " + e.getMessage());
         }
