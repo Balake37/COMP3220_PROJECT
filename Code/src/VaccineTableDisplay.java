@@ -1,7 +1,4 @@
-package Data;
-
 import java.util.Map;
-
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;

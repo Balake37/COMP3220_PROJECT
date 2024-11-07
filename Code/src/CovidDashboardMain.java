@@ -1,8 +1,5 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,6 +13,8 @@ public class CovidDashboardMain {
         SwingUtilities.invokeLater(() -> createAndShowGUI());
     }
 
+    private static Image backgroundImage; //Initialize bg image
+
     // Method to create and display the main GUI
     private static void createAndShowGUI() {
         JFrame frame = new JFrame("COVID-19 Integrated Dashboard");
@@ -24,10 +23,19 @@ public class CovidDashboardMain {
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
 
-        // Create main menu panel and add to frame
-        JPanel menuPanel = new JPanel();
+        backgroundImage = new ImageIcon("Code/src/images/menu.png").getImage(); //Load bg image
+
+        //Paint the background image
+        JPanel menuPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
-        menuPanel.setBackground(new Color(59, 71, 73));
+        menuPanel.setBackground(new Color(59, 71, 73, 0));
 
         // Title label
         JLabel titleLabel = new JLabel("COVID-19 Live Dashboard");
@@ -36,7 +44,7 @@ public class CovidDashboardMain {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         menuPanel.add(Box.createVerticalStrut(20));
         menuPanel.add(titleLabel);
-        menuPanel.add(Box.createVerticalStrut(50));
+        menuPanel.add(Box.createVerticalStrut(190));
 
         // Add buttons for different views
         addButton(menuPanel, "COVID-19 Cases", e -> new Cases());
